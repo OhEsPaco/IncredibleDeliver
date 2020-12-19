@@ -31,6 +31,10 @@ public class Platform : MonoBehaviour
     [Range(0f, 1f)]
     private float boxVolume;
 
+    [SerializeField]
+    [Range(0f, 10f)]
+    private float maxDistanceToPickBox = 2f;
+
     private AudioSource audioSource;
 
     private int maxBoxesIndex;
@@ -39,7 +43,6 @@ public class Platform : MonoBehaviour
 
     [SerializeField]
     private GameObject[] spawnedBoxes;
-
 
     private void Start()
     {
@@ -86,7 +89,10 @@ public class Platform : MonoBehaviour
     //Añade una caja a la plataforma
     public void PickBox()
     {
-        if (belt.CurrentBox && spawnZone.CurrentBoxType == belt.CurrentBox.ThisBoxType && currentBoxesIndex <= maxBoxesIndex)
+        if (belt.CurrentBox 
+            && spawnZone.CurrentBoxType == belt.CurrentBox.ThisBoxType 
+            && currentBoxesIndex <= maxBoxesIndex 
+            && Vector3.Distance(Camera.main.transform.position, transform.position) <= maxDistanceToPickBox)
         {
             //Reproduce el sonido
             audioSource.PlayOneShot(boxSfx, boxVolume);

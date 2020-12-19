@@ -34,7 +34,7 @@ public class SpawnZone : MonoBehaviour
     private Counter counter;
 
     [SerializeField]
-    [Range(1f, 20f)]
+    [Range(1f, 120f)]
     private float secondsBetweenPoints = 15f;
 
     [SerializeField]

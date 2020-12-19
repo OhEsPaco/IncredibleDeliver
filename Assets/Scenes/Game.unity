@@ -647,6 +647,7 @@ MonoBehaviour:
   boxSfx: {fileID: 8300000, guid: 9b5fd2698e599b041a7f52d4ca637d39, type: 3}
   platformSfx: {fileID: 8300000, guid: 5a16e97d017439a4790da7cbb41390f8, type: 3}
   boxVolume: 0.311
+  maxDistanceToPickBox: 6
   spawnedBoxes: []
 --- !u!23 &122638804
 MeshRenderer:
@@ -2489,6 +2490,7 @@ MonoBehaviour:
   boxSfx: {fileID: 8300000, guid: 9b5fd2698e599b041a7f52d4ca637d39, type: 3}
   platformSfx: {fileID: 8300000, guid: 5a16e97d017439a4790da7cbb41390f8, type: 3}
   boxVolume: 0.311
+  maxDistanceToPickBox: 6
   spawnedBoxes: []
 --- !u!23 &555376447
 MeshRenderer:
@@ -5379,7 +5381,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -5782,7 +5784,7 @@ MonoBehaviour:
   platform: {fileID: 1882195689}
   movementSpeed: 1
   counter: {fileID: 395265944}
-  secondsBetweenPoints: 15
+  secondsBetweenPoints: 45
   platformSpawner: {fileID: 969107060}
   lessMoneyVolume: 0.134
   lessMoney: {fileID: 8300000, guid: 341d8c7657fa18946a91980f0a80dbc0, type: 3}
@@ -6415,6 +6417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1219867762}
+  - component: {fileID: 1219867759}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6422,6 +6425,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1219867759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219867758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea975de8a21b124cb54d48c9f105c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAngleToWalk: 15
+  maxAngleToWalk: 30
+  speed: 3
+  maxX: 2
+  minX: -3
+  maxZ: 4
+  minZ: -4
 --- !u!4 &1219867762
 Transform:
   m_ObjectHideFlags: 0
@@ -7454,7 +7476,7 @@ MonoBehaviour:
   platform: {fileID: 122638803}
   movementSpeed: 1
   counter: {fileID: 890872038}
-  secondsBetweenPoints: 15
+  secondsBetweenPoints: 45
   platformSpawner: {fileID: 969107060}
   lessMoneyVolume: 0.134
   lessMoney: {fileID: 8300000, guid: 341d8c7657fa18946a91980f0a80dbc0, type: 3}
@@ -8772,6 +8794,7 @@ MonoBehaviour:
   boxSfx: {fileID: 8300000, guid: 9b5fd2698e599b041a7f52d4ca637d39, type: 3}
   platformSfx: {fileID: 8300000, guid: 5a16e97d017439a4790da7cbb41390f8, type: 3}
   boxVolume: 0.311
+  maxDistanceToPickBox: 6
   spawnedBoxes: []
 --- !u!65 &1882195690
 BoxCollider:
@@ -9138,7 +9161,7 @@ MonoBehaviour:
   platform: {fileID: 555376446}
   movementSpeed: 1
   counter: {fileID: 929899267}
-  secondsBetweenPoints: 15
+  secondsBetweenPoints: 45
   platformSpawner: {fileID: 969107060}
   lessMoneyVolume: 0.134
   lessMoney: {fileID: 8300000, guid: 341d8c7657fa18946a91980f0a80dbc0, type: 3}
@@ -10955,6 +10978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd5d84c32eff2446b50441cc07c9a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistanceToPickBox: 6
 --- !u!65 &3636109842201598603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11138,6 +11162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd5d84c32eff2446b50441cc07c9a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistanceToPickBox: 6
 --- !u!65 &4555687055353839493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11695,6 +11720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd5d84c32eff2446b50441cc07c9a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistanceToPickBox: 6
 --- !u!65 &7963342793493595241
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,6 +4,10 @@ using static ConveyorBelt;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField]
+    [Range(0f, 10f)]
+    private float maxDistanceToPickBox = 3f;
+
     public float InterpolationValue
     { get; set; }
 
@@ -46,31 +50,34 @@ public class Box : MonoBehaviour
     //Coge la caja
     public void MoveBox()
     {
-        if (SpawnedBy && !SpawnedBy.CurrentBox)
+        if (Vector3.Distance(Camera.main.transform.position, transform.position) <= maxDistanceToPickBox)
         {
-            SpawnedBy.CurrentBox = this;
-            Moving = false;
-            MovingBySight = true;
-
-            StartCoroutine(MoveAndCheck());
-        }
-        else if (SpawnedBy)
-        {
-            if (SpawnedBy.CurrentBox)
+            if (SpawnedBy && !SpawnedBy.CurrentBox)
             {
-                SpawnedBy.CurrentBox.MovingBySight = false;
-                SpawnedBy.CurrentBox.InterpolationValue = this.InterpolationValue;
-                SpawnedBy.CurrentBox.transform.position = this.transform.position;
-                SpawnedBy.CurrentBox.transform.rotation = this.transform.rotation;
-                SpawnedBy.CurrentBox.Moving = true;
-                SpawnedBy.CurrentBox.EnableCollider(1f);
                 SpawnedBy.CurrentBox = this;
+                Moving = false;
+                MovingBySight = true;
+
+                StartCoroutine(MoveAndCheck());
             }
+            else if (SpawnedBy)
+            {
+                if (SpawnedBy.CurrentBox)
+                {
+                    SpawnedBy.CurrentBox.MovingBySight = false;
+                    SpawnedBy.CurrentBox.InterpolationValue = this.InterpolationValue;
+                    SpawnedBy.CurrentBox.transform.position = this.transform.position;
+                    SpawnedBy.CurrentBox.transform.rotation = this.transform.rotation;
+                    SpawnedBy.CurrentBox.Moving = true;
+                    SpawnedBy.CurrentBox.EnableCollider(1f);
+                    SpawnedBy.CurrentBox = this;
+                }
 
-            Moving = false;
-            MovingBySight = true;
+                Moving = false;
+                MovingBySight = true;
 
-            StartCoroutine(MoveAndCheck());
+                StartCoroutine(MoveAndCheck());
+            }
         }
     }
 
@@ -94,16 +101,7 @@ public class Box : MonoBehaviour
         {
             transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * distance;
 
-            if (transform.position.y > Ceiling.position.y)
-            {
-                transform.position = new Vector3(transform.position.x, Ceiling.position.y, transform.position.z);
-            }
-
-            if (transform.position.y < Floor.position.y)
-            {
-                transform.position = new Vector3(transform.position.x, Floor.position.y, transform.position.z);
-            }
-
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -4.5f, 4.5f), Mathf.Clamp(transform.position.y, Floor.position.y, Ceiling.position.y), Mathf.Clamp(transform.position.z, -4.5f, 4.5f));
             yield return null;
         } while (MovingBySight);
     }
