@@ -37,13 +37,13 @@ public class Box : MonoBehaviour
     public bool MovingBySight
     { get; set; }
 
-    // Start is called before the first frame update
     private void Start()
     {
         MovingBySight = false;
         InterpolationValue = 0f;
     }
 
+    //Coge la caja
     public void MoveBox()
     {
         if (SpawnedBy && !SpawnedBy.CurrentBox)
@@ -72,9 +72,6 @@ public class Box : MonoBehaviour
 
             StartCoroutine(MoveAndCheck());
         }
-
-        //SpawnedBy.BoxDespawned(ThisBoxType);
-        //Destroy(this.gameObject);
     }
 
     public void EnableCollider(float delaySeconds)
@@ -88,14 +85,14 @@ public class Box : MonoBehaviour
         GetComponent<BoxCollider>().enabled = true;
     }
 
+    //Mueve la caja con la vista asegurandose de que no se atraviese el techo ni el suelo
     private IEnumerator MoveAndCheck()
     {
         GetComponent<BoxCollider>().enabled = false;
         float distance = 3;
         do
         {
-            Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward) * distance;
-            transform.position = Camera.main.transform.position + forward;
+            transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * distance;
 
             if (transform.position.y > Ceiling.position.y)
             {
@@ -111,7 +108,6 @@ public class Box : MonoBehaviour
         } while (MovingBySight);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Moving && MoveTo && MoveFrom)
@@ -121,9 +117,7 @@ public class Box : MonoBehaviour
             if (InterpolationValue >= 1)
             {
                 transform.position = new Vector3(
-                    Mathf.Lerp(MoveFrom.position.x, MoveTo.position.x, 1),
-                    Mathf.Lerp(MoveFrom.position.y, MoveTo.position.y, 1),
-                    Mathf.Lerp(MoveFrom.position.z, MoveTo.position.z, 1));
+                    MoveTo.position.x, MoveTo.position.y, MoveTo.position.z);
 
                 Moving = false;
                 InterpolationValue = 1;

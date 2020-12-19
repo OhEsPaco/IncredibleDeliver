@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Los contadores pueden estar formados de un número arbitrario de digitos
 public class Counter : MonoBehaviour
 {
     [SerializeField]
@@ -22,13 +23,13 @@ public class Counter : MonoBehaviour
 
     private AudioSource audioSource;
 
-    // Start is called before the first frame update
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         SetAllToZero();
     }
 
+    //Pone todo a cero
     private void SetAllToZero()
     {
         foreach (Digit d in digits)
@@ -37,6 +38,7 @@ public class Counter : MonoBehaviour
         }
     }
 
+    //Pone el contador a la cantidad points
     public void SetPoints(int points)
     {
         score = points;
@@ -61,6 +63,7 @@ public class Counter : MonoBehaviour
         }
     }
 
+    //Suma al contador la cantidad apropiada
     public void AddToScore(int points)
     {
         score += points;
@@ -78,7 +81,7 @@ public class Counter : MonoBehaviour
         }
 
         int currentHundred = score / 100;
-        Debug.Log(currentHundred);
+      
         if (currentHundred != lastHundred)
         {
             lastHundred = currentHundred;
@@ -100,6 +103,7 @@ public class Counter : MonoBehaviour
         }
     }
 
+    //Cambia el material de todos los digitos
     public void SetMaterial(Material m)
     {
         foreach (Digit digit in digits)
@@ -108,6 +112,7 @@ public class Counter : MonoBehaviour
         }
     }
 
+    //Convierte un entero en un array de digitos
     private int[] GetIntArray(int num)
     {
         List<int> listOfInts = new List<int>();

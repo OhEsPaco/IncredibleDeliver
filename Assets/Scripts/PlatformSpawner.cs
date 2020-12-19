@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using static ConveyorBelt;
 
+//Sin más se encarga de comunicar SpawnZone con ConveyorBelt
 public class PlatformSpawner : MonoBehaviour
 {
     [SerializeField]

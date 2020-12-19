@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Cada uno de los digitos de un Counter
 public class Digit : MonoBehaviour
 {
     [SerializeField]

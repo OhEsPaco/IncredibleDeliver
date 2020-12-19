@@ -1,21 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+//He decidido que toda la aplicación use el mismo objeto System.Random
+//para mejorar la aleatoriedad.
 public class RandomGenerator : MonoBehaviour
 {
-
     public System.Random Random
     { get; set; }
-
 
     private void Awake()
     {
         Random = new System.Random();
     }
+
     private static RandomGenerator randomGenerator;
 
-    
     public static RandomGenerator Instance
     {
         get
@@ -33,5 +31,4 @@ public class RandomGenerator : MonoBehaviour
             return randomGenerator;
         }
     }
-
 }
